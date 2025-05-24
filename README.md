@@ -35,6 +35,7 @@ This is a backend application for a LinkedIn-based chat application built with N
    ```
    npm install
    ```
+   ```
    npm install express mongoose passport-linkedin-oauth2 jsonwebtoken dotenv socket.io express-session cors axios
    ```
 
@@ -50,14 +51,18 @@ This is a backend application for a LinkedIn-based chat application built with N
   ```
 
 5. This is done with MongoDB 
-    ```
    On administrator command prompt 
+   Open the C:\ directory --> 
     ```
-   Open the C:\ directory --> cd C:\ 
+    cd C:\ 
     ```
-   Make a new directory for the database --> md \data\salliance
+   Make a new directory for the database --> 
     ```
-   Run the mongodb instance in the background --> "C:\Program Files\MongoDB\Server\8.0\bin\mongod.exe" --dbpath="c:\data\salliance"
+    md \data\salliance
+    ```
+   Run the mongodb instance in the background --> 
+    ```
+    "C:\Program Files\MongoDB\Server\8.0\bin\mongod.exe" --dbpath="c:\data\salliance"
     ```
 
 6. Start the server:
