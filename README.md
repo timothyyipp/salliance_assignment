@@ -1,10 +1,10 @@
 
 
-This is done with MongoDB
-on administrator command prompt
-open the C:\ directory --> cd C:\
-make a new directory for the database --> md \data\salliance
-run the mongodb instance in the background --> "C:\Program Files\MongoDB\Server\8.0\bin\mongod.exe" --dbpath="c:\data\salliance"
+This is done with MongoDB <br/>
+on administrator command prompt <br/>
+open the C:\ directory --> cd C:\ <br/>
+make a new directory for the database --> md \data\salliance <br/>
+run the mongodb instance in the background --> "C:\Program Files\MongoDB\Server\8.0\bin\mongod.exe" --dbpath="c:\data\salliance" <br/>
 
 npm install <br/>
 npm install express mongoose passport-linkedin-oauth2 jsonwebtoken dotenv socket.io express-session cors axios<br/>
