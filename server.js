@@ -42,7 +42,7 @@ const auth=() => {
  * @route GET /auth/linkedin
  * @desc Redirect to LinkedIn OAuth login
  */
-app.get("/auth/linkedin", (req, res) => {
+app.post("/auth/linkedin", (req, res) => {
   return res.redirect(auth());
 });
 
@@ -50,7 +50,7 @@ app.get("/auth/linkedin", (req, res) => {
  * @route GET /auth/linkedin/callback
  * @desc Handle LinkedIn OAuth callback and retrieve user info
  */
-app.get("/auth/linkedin/callback", async (req, res) => {
+app.post("/auth/linkedin/callback", async (req, res) => {
   const code = req.query.code;
   if (!code) {
     return res.status(400).json({ error: "Missing code from LinkedIn callback" });

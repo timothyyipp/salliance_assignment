@@ -69,6 +69,10 @@ This is a backend application for a LinkedIn-based chat application built with N
    npm start
     ```
 
+7. Demonstrate callback
+    ```
+    curl -X POST http://localhost:5000/auth/linkedin
+    ```
 ## Note: 
 I believe in the .env files, you may not have access to the app I made on developer Linkedin (client_id and client_secret may be not authenticated if not logged in my linkedin account)<br/>
 
@@ -88,4 +92,4 @@ I can't really test the backend without the frontend. <br/>
 --> Not sure how to produce a working demo <br/>
 
 Final Note: <br/>
-I have done as much as I can and I am not sure if I can do anymore. 
+I have done as much as I can and I am not sure if I can complete it. 
