@@ -1,15 +1,71 @@
 
+# LinkedIn Chat Application Backend
 
-This is done with MongoDB <br/>
-on administrator command prompt <br/>
-open the C:\ directory --> cd C:\ <br/>
-make a new directory for the database --> md \data\salliance <br/>
-run the mongodb instance in the background --> "C:\Program Files\MongoDB\Server\8.0\bin\mongod.exe" --dbpath="c:\data\salliance" <br/>
+This is a backend application for a LinkedIn-based chat application built with Node.js and Express.js. It supports LinkedIn OAuth login, real-time messaging using WebSockets, and chat history retrieval from a MongoDB database.
 
-npm install <br/>
-npm install express mongoose passport-linkedin-oauth2 jsonwebtoken dotenv socket.io express-session cors axios<br/>
+## Features
 
-Note: <br/>
+- **LinkedIn OAuth Login**: Users can log in using their LinkedIn accounts.
+- **Real-time Messaging**: Users can send and receive messages in real-time.
+- **Chat History**: Users can retrieve their chat history.
+
+## Technologies Used
+
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- Socket.io
+- JSON Web Tokens (JWT)
+- dotenv
+
+## Setup Instructions
+
+1. Clone the repository:
+   ```
+   git clone <repository-url>
+   ```
+
+2. Navigate to the project directory:
+   ```
+   cd linkedin-chat-backend
+   ```
+
+3. Install the dependencies:
+   ```
+   npm install
+   ```
+   npm install express mongoose passport-linkedin-oauth2 jsonwebtoken dotenv socket.io express-session cors axios
+   ```
+
+4. Create a `.env` file in the root directory and add your LinkedIn API credentials and MongoDB connection string:
+  ```
+  PORT=5000
+  MONGO_URI=mongodb://127.0.0.1:27017/linkedin-chat
+  JWT_SECRET=your_jwt_secret
+  LINKEDIN_CLIENT_ID=your_client_id
+  LINKEDIN_CLIENT_SECRET=your_client_secret
+  REDIRECT_URI=http://127.0.0.1:5000/auth/linkedin/callback
+  SCOPE=email profile
+  ```
+
+5. This is done with MongoDB 
+    ```
+   On administrator command prompt 
+    ```
+   Open the C:\ directory --> cd C:\ 
+    ```
+   Make a new directory for the database --> md \data\salliance
+    ```
+   Run the mongodb instance in the background --> "C:\Program Files\MongoDB\Server\8.0\bin\mongod.exe" --dbpath="c:\data\salliance"
+    ```
+
+6. Start the server:
+    ```
+   npm start
+    ```
+
+## Note: 
 I believe in the .env files, you may not have access to the app I made on developer Linkedin (client_id and client_secret may be not authenticated if not logged in my linkedin account)<br/>
 
 Difficulties:
@@ -29,4 +85,3 @@ I can't really test the backend without the frontend. <br/>
 
 Final Note: <br/>
 I have done as much as I can and I am not sure if I can do anymore. 
-

@@ -14,7 +14,8 @@ dotenv.config();
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server, {
-  cors: { origin: '*' }
+  cors: { origin: '*' },
+  methods: ['GET', 'POST']
 });
 
 // Middleware
@@ -102,7 +103,7 @@ app.get("/auth/linkedin/callback", async (req, res) => {
 
   } catch (error) {
     console.error("LinkedIn token error:", error.response?.data || error.message);
-    return res.status(500).json({ error: "Failed to get access token" });
+    return res.status(500).json({ error: "Failed to get user info" });
   }
 });
 
@@ -110,14 +111,19 @@ app.get("/auth/linkedin/callback", async (req, res) => {
  * Middleware: Authenticate JWT token from Authorization header
  */
 const authenticateToken = (req, res, next) => {
-  const token = req.headers['authorization']?.split(' ')[1];
-  if (!token) return res.sendStatus(401);
+  const authHeader = req.headers.authorization;
+  if (authHeader && authHeader.startsWith('Bearer ')) {
+    const token = req.headers['authorization']?.split(' ')[1];
+    if (!token) return res.sendStatus(401);
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    if (err) return res.sendStatus(403);
-    req.user = user;
-    next();
-  });
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+      if (err) return res.sendStatus(403);
+      req.user = user;
+      next();
+    });
+  } else {
+      res.status(401).json({ error: 'No token provided' });
+  }
 };
 
 // Socket.IO: Handle real-time communication
@@ -131,8 +137,20 @@ io.on('connection', (socket) => {
   socket.on('send_message', async ({ senderId, receiverId, content }) => {
     const message = new Message({ senderId, receiverId, content });
     await message.save();
-    // Optionally emit 'receive_message' here for real-time updates
-    // io.emit('receive_message', message);
+    // Emit 'receive_message' here for real-time updates
+    io.to(receiverId).emit('receiveMessage', {
+      senderId,
+      receiverId,
+      content,
+      timestamp: newMessage.timestamp,
+    });
+    // Emit to sender as well for confirmation
+    socket.emit('messageSent', {
+      senderId,
+      receiverId,
+      content,
+      timestamp: newMessage.timestamp,
+    });
   });
 
   socket.on('disconnect', () => {
