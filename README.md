@@ -39,7 +39,7 @@ This is a backend application for a LinkedIn-based chat application built with N
    npm install express mongoose passport-linkedin-oauth2 jsonwebtoken dotenv socket.io express-session cors axios
    ```
 
-4. Create a `.env` file in the root directory and add your LinkedIn API credentials and MongoDB connection string:
+4. Create a `.env` file in the root directory and add your LinkedIn API credentials and MongoDB connection string (file already made, just need to put in details):
   ```
   PORT=5000
   MONGO_URI=mongodb://127.0.0.1:27017/linkedin-chat
