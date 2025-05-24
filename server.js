@@ -45,7 +45,7 @@ app.get("/auth/linkedin", (req, res) => {
 app.get("/auth/linkedin/callback", async (req, res) => {
   const code = req.query.code;
   if (!code) {
-    return res.status(400).json({ error: 'Missing code from LinkedIn callback' });
+    return res.status(400).json({ error: "Missing code from LinkedIn callback" });
   }
 
   try {
@@ -56,17 +56,35 @@ app.get("/auth/linkedin/callback", async (req, res) => {
     const accessToken = tokenResponse.data.access_token;
     console.log("Access Token: ", accessToken);
 
+    // Get basic profile info (e.g. name, email, etc.)
     const profileResponse = await axios.get('https://api.linkedin.com/v2/userinfo', {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
     });
 
-    return res.json({ profileResponse });
+    const userData = profileResponse.data;
+
+    // Create JWT payload
+    const payload = {
+      id: userData.sub, // user unique id from LinkedIn
+      name: userData.name,
+      email: userData.email, // if available in the `userinfo` response
+    };
+
+    // Sign JWT
+    const jwtToken = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "1h", // token valid for 1 hour
+    });
+
+    return res.json({
+      token: jwtToken,
+      user: payload,
+    });
 
   } catch (error) {
-    console.error('LinkedIn token error:', error.response?.data || error.message);
-    return res.status(500).json({ error: 'Failed to get access token' });
+    console.error("LinkedIn token error:", error.response?.data || error.message);
+    return res.status(500).json({ error: "Failed to get access token" });
   }
 });
 
