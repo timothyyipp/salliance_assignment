@@ -28,7 +28,7 @@ This is a backend application for a LinkedIn-based chat application built with N
 
 2. Navigate to the project directory:
    ```
-   cd linkedin-chat-backend
+   cd folder_name
    ```
 
 3. Install the dependencies:
