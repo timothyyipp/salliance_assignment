@@ -65,16 +65,27 @@ app.get("/auth/linkedin/callback", async (req, res) => {
 
     const userData = profileResponse.data;
 
+    // Check if user exists in DB, if not, create
+    let user = await User.findOne({ linkedinId: userData.sub });
+    if (!user) {
+      user = new User({
+        linkedinId: userData.sub,
+        name: userData.name,
+        email: userData.email,
+      });
+      await user.save();
+    }
+
     // Create JWT payload
     const payload = {
-      id: userData.sub, // user unique id from LinkedIn
-      name: userData.name,
-      email: userData.email, // if available in the `userinfo` response
+      id: user.linkedinId,
+      name: user.name,
+      email: user.email,
     };
 
     // Sign JWT
     const jwtToken = jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: "1h", // token valid for 1 hour
+      expiresIn: "1h",
     });
 
     return res.json({

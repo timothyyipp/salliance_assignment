@@ -9,8 +9,8 @@ run the mongodb instance in the background --> "C:\Program Files\MongoDB\Server\
 npm install <br/>
 npm install express mongoose passport-linkedin-oauth2 jsonwebtoken dotenv socket.io express-session cors axios<br/>
 
-Note: 
-I believe in the .env files, you may not have access to the app I made on developer Linkedin (client_id and client_secret may be not authenticated if not logged in my linkedin account)
+Note: <br/>
+I believe in the .env files, you may not have access to the app I made on developer Linkedin (client_id and client_secret may be not authenticated if not logged in my linkedin account)<br/>
 
 Difficulties:
 Trying to access information about the user through the access token. <br/> 
@@ -25,7 +25,8 @@ and I wasn't sure how to get the API to work even though I was successfully crea
 I can't really test the backend without the frontend. <br/>
 --> I am not really used to any testing resources that do not contain the frontend <br/>
 --> I do not know what how to test the program. <br/>
+--> Not sure how to produce a working demo <br/>
 
-Final Note:
+Final Note: <br/>
 I have done as much as I can and I am not sure if I can do anymore. 
 
