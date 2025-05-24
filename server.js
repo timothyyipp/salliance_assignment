@@ -7,7 +7,6 @@ const session = require('express-session');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
-const { auth } = require("./auth");
 const axios = require("axios");
 dotenv.config();
 
@@ -29,6 +28,14 @@ mongoose.connect(process.env.MONGO_URI).then(() => console.log('MongoDB connecte
 // Import Models
 const User = require('./models/User');
 const Message = require('./models/message');
+
+/**
+ * @function generates a LinkedIn OAuth 2.0 authorization URL using environment variables.
+ * @returns {string} The encoded LinkedIn OAuth 2.0 authorization URL.
+ */
+const auth=() => {
+  return encodeURI(`https://linkedin.com/oauth/v2/authorization?client_id=${process.env.LINKEDIN_CLIENT_ID}&response_type=code&scope=${process.env.SCOPE}&redirect_uri=${process.env.REDIRECT_URI}`); 
+}
 
 /**
  * @route GET /auth/linkedin
