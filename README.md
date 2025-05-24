@@ -50,9 +50,8 @@ This is a backend application for a LinkedIn-based chat application built with N
   SCOPE=email profile
   ```
 
-5. This is done with MongoDB 
-   On administrator command prompt 
-   Open the C:\ directory --> 
+5. This is done with MongoDB <br/>
+   On administrator command prompt, open the C:\ directory --> 
     ```
     cd C:\ 
     ```
