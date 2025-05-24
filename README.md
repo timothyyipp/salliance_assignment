@@ -90,7 +90,7 @@ Trying to access information about the user through the access token. <br/>
 and I wasn't sure how to get the API to work even though I was successfully creating an access token <br/>
 Testing: <br/>
 --> I am not really used to any testing resources <br/>
---> I do not know what how to test the program. (Using postman, etc.)<br/>
+--> I do not know what and how to test the program. (Using postman, etc.)<br/>
 --> Not sure how to produce a working demo <br/>
 
 ## Final Note:
